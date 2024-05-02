@@ -6,7 +6,7 @@ categories: [write-up, MidnightFlag Backslash]
 tags: [MidnightFlag Backslash, write-up]
 ---
 
-<a href="https://github.com/Kuorashi/Forensic-sur-RAM/releases/tag/Zip_challenge_MidnightFlag-Backslash/Forensic-sur-RAM.7z" class="download-button">Download the docker of this challenge</a>
+<a href="https://github.com/Kuorashi/Forensic-sur-RAM/releases/tag/Zip_challenge_MidnightFlag-Backslash/Forensic-sur-RAM.7z" class="download-button">Download the zip of this challenge</a>
 
 1. A quelle heure ai-je démarré mon PC (format attendu MCTF{hh:mm:ss} ?
 2. Quelle processus a exécuté le bloc note (format attendu MCTF{PID_DU_PROCESSUS})?
