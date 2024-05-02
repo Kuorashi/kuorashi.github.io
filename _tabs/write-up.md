@@ -1,5 +1,5 @@
 ---
 layout: write-up
-icon: "fas fa-book"
-order: 3
+icon: fas fa-book
+order: 5
 ---
