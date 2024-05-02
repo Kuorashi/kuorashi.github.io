@@ -5,11 +5,11 @@
   url: "https://github.com/Kuorashi"
 
 - type: TryHackMe
-  icon: fab fa-cloud
+  icon: "fab fa-github"
   url: "https://github.com/Kuorashi"
 
 - type: RootMe
-  icon: "fab fa-skull"
+  icon: "fab fa-github"
   url: "https://www.root-me.org/kuorashi?lang=fr"
 
 #- type: twitter
@@ -30,7 +30,7 @@
 #
 - type: linkedin
    icon: 'fab fa-linkedin'   # icons powered by <https://fontawesome.com/>
-   url:  ''                  # Fill with your Linkedin homepage
+   url:  'https://www.linkedin.com/in/william-n-a45128216/'                  # Fill with your Linkedin homepage
 #
 # - type: stack-overflow
 #   icon: 'fab fa-stack-overflow'
