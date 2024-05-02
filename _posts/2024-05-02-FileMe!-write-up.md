@@ -7,7 +7,7 @@ tags: [MidnightFlag Backslash, write-up]
 ---
 'EN - English' at the end of 'FR - French version'
 
-<a href="https://github.com/Kuorashi/file_challenge_ctf/releases/download/FileMe!/File_Me.zip" class="download-button">Download the docker of this challenge</a>
+<a href="https://github.com/Kuorashi/file_challenge_ctf/releases/download/FileMe!/File_Me.zip" class="download-button">Download the zip of this challenge</a>
 
 # FR - French
 
