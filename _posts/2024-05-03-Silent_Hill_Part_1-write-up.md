@@ -13,9 +13,9 @@ tags: [MidnightFlag Backslash, write-up]
 
 ## Vérification de la faille :
 Vérification de la SSTI ; si le code est exécuté, le site affichera 49 :
-```
-"{{7*7}}"
-```
+
+{{7*7}}
+
 Le code s'étant bien exécuté, on peut poursuivre.
 
 ## Exploitation de la faille
