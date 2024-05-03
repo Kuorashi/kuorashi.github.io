@@ -1,6 +1,6 @@
 ---
 title: Silent_Hill_Part_1 - FR - French | EN - english
-author: cotes
+author: kuorashi
 date: 2024-05-03 00:34:00 +0800
 categories: [write-up, MidnightFlag Backslash]
 tags: [MidnightFlag Backslash, write-up]
