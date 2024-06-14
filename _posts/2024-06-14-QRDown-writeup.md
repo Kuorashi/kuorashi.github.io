@@ -7,7 +7,7 @@ tags: [MidnightFlag Backslash, write-up]
 ---
 'EN - English' at the end of 'FR - French version'
 
-<a href="https://github.com/Kuorashi/file_challenge_ctf/releases/download/FileMe!/snake.zip" class="download-button">Download the zip of this challenge</a>
+<a href="https://github.com/Kuorashi/file_challenge_ctf/blob/main/MidnightFlag%20Backslash/QRDown.7z" class="download-button">Download the zip of this challenge</a>
 
 # FR - French
 Malheureusement, le challenge ne peut plus être réalisé étant donné que les QR codes ont expiré. Cependant, vous pouvez toujours essayer de les retrouver sur l'image.
