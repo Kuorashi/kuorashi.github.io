@@ -7,7 +7,7 @@ tags: [MidnightFlag Backslash, write-up]
 ---
 'EN - English' at the end of 'FR - French version'
 
-<a href="https://github.com/Kuorashi/file_challenge_ctf/releases/download/FileMe!/snake.zip" class="download-button">Download the zip of this challenge</a>
+<a href="https://github.com/Kuorashi/file_challenge_ctf/blob/main/MidnightFlag%20Backslash/R3tr0_Auct1on.zip" class="download-button">Download the zip of this challenge</a>
 
 # FR - French
 AOI ne concerne pas les images de manga mais l'« Instantiation d'Objets Arbitraires ».
