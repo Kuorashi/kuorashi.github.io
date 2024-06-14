@@ -10,6 +10,8 @@ tags: [MidnightFlag Backslash, write-up]
 <a href="https://github.com/Kuorashi/file_challenge_ctf/releases/download/FileMe!/snake.zip" class="download-button">Download the zip of this challenge</a>
 
 # FR - French
+Malheureusement, le challenge ne peut plus être réalisé étant donné que les QR codes ont expiré. Cependant, vous pouvez toujours essayer de les retrouver sur l'image.
+
 1. **Analyse Initiale de l'Image**:
    - Les participants commencent avec une image de style pop art. Cette image contient quatre QR codes, mais seulement deux d'entre eux sont immédiatement visibles.
 
@@ -37,6 +39,8 @@ tags: [MidnightFlag Backslash, write-up]
 ---
 
 # EN - English
+Unfortunately, the challenge can no longer be completed since the QR codes have expired. However, you can still try to find them in the image.
+
 1. **Initial Image Analysis**:
    - Participants start with an image styled in pop art fashion. This image contains four QR codes, but only two of them are immediately visible.
 
