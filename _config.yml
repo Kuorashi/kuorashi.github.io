@@ -45,6 +45,7 @@ show_excerpts: true  # Show post excerpts on home page
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
+  - jekyll-sitemap
 
 # Collections
 collections:
