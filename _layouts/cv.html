@@ -1,0 +1,17 @@
+---
+layout: default
+---
+
+<div class="cv-container">
+  <nav class="lang-nav">
+    {% if page.lang == "fr" %}
+      <a href="{{ '/cv/en/' | relative_url }}">🇬🇧 English version</a>
+    {% else %}
+      <a href="{{ '/cv/fr/' | relative_url }}">🇫🇷 Version française</a>
+    {% endif %}
+  </nav>
+
+  <article class="cv-content">
+    {{ content }}
+  </article>
+</div>

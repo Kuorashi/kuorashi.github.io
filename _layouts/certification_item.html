@@ -1,0 +1,32 @@
+---
+layout: page
+---
+
+<div class="back-button-container">
+  <a href="{{ '/certifications/' | relative_url }}" class="cert-back-button">
+    ⬅ Retour aux Certifications
+  </a>
+</div>
+
+<article class="certification-item">
+  <header>
+    <img src="{{ page.image | relative_url }}" alt="{{ page.title }}">
+    <h1>{{ page.title }}</h1>
+    <p>
+      🏢 {{ page.provider }} | 
+      {% if page.status == "Obtenue" %}
+        ✅ {{ page.status }}
+      {% elsif page.status == "En cours" %}
+        🔄 {{ page.status }}
+      {% endif %}
+      {% if page.date_obtained %}
+        | 📅 {{ page.date_obtained }}
+      {% endif %}
+      | {% include reading-time.html content=page.content %}
+    </p>
+  </header>
+
+  <div class="content">
+    {{ content }}
+  </div>
+</article>

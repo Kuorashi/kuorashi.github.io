@@ -1,0 +1,20 @@
+---
+layout: default
+---
+
+<div class="cards" id="projectsCards">
+  {% for project in site.projects %}
+    <a class="card" href="{{ project.url | relative_url }}">
+      <span class="reading-time-badge">{% include reading-time.html content=project.content fallback=project.description %}</span>
+      <img src="{{ project.image | relative_url }}" alt="{{ project.title }}">
+      <h3>{{ project.title }}</h3>
+      <hr>
+      {% assign pdesc = project.description | default: project.content | strip_html | truncate: 180 %}
+      <p>{{ pdesc }}</p>
+    </a>
+  {% endfor %}
+  {% if site.projects == empty %}
+    <p>Aucun projet publié pour l’instant.</p>
+  {% endif %}
+  
+</div>

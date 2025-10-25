@@ -1,0 +1,182 @@
+---
+layout: default
+title: Hack The Box
+permalink: /htb/
+---
+
+<div class="type-segment" role="tablist" aria-label="Type de contenu">
+  <button class="segment-button active" data-type="machines" role="tab" aria-selected="true">Machines</button>
+  <button class="segment-button" data-type="prolabs" role="tab" aria-selected="false">Prolabs</button>
+  <button class="segment-button" data-type="challenges" role="tab" aria-selected="false">Challenges</button>
+  <!-- Select conservé pour compatibilité JS mais masqué -->
+  <select id="typeSelect" aria-label="Filtrer par type" hidden>
+    <option value="machines">Machines</option>
+    <option value="prolabs">Prolabs</option>
+    <option value="challenges">Challenges</option>
+  </select>
+  <!-- fin select masqué -->
+</div>
+
+<div class="filters">
+  <select id="osFilter" class="filter" data-type="machines" aria-label="Filtrer par système d'exploitation">
+    <option value="">OS (tous)</option>
+    <option value="Windows">Windows</option>
+    <option value="Linux">Linux</option>
+  </select>
+
+  <select id="difficultyFilter" class="filter" data-type="machines challenges prolabs" aria-label="Filtrer par difficulté">
+    <option value="">Difficulté (toutes)</option>
+  </select>
+
+  <select id="categoryFilter" class="filter" data-type="challenges" aria-label="Filtrer par catégorie">
+    <option value="">Catégorie (toutes)</option>
+    <option value="Web">Web</option>
+    <option value="Secure Coding">Secure Coding</option>
+    <option value="Reversing">Reversing</option>
+    <option value="Quantum">Quantum</option>
+    <option value="Pwn">Pwn</option>
+    <option value="OSINT">OSINT</option>
+    <option value="Mobile">Mobile</option>
+    <option value="Miscs">Miscs</option>
+    <option value="ICS">ICS</option>
+    <option value="Hardware">Hardware</option>
+    <option value="GamePwn">GamePwn</option>
+    <option value="Forensics">Forensics</option>
+    <option value="Crypto">Crypto</option>
+    <option value="Coding">Coding</option>
+    <option value="Blockchain">Blockchain</option>
+    <option value="AI-ML">AI-ML</option>
+  </select>
+</div>
+
+<div class="cards" id="cardsContainer">
+  {% assign all_items = site.machines | concat: site.prolabs | concat: site.challenges %}
+  {% for item in all_items %}
+    <a class="card"
+       href="{{ item.url | relative_url }}"
+       data-type="{{ item.type }}"
+       data-os="{{ item.os | default: '' }}"
+       data-category="{{ item.category | default: '' }}"
+       data-difficulty="{{ item.difficulty | default: '' }}">
+      <span class="reading-time-badge">{% include reading-time.html content=item.content fallback=item.description %}</span>
+      <img src="{{ item.image | relative_url }}" alt="{{ item.title }}">
+      <h3>{{ item.title }}</h3>
+      <hr>
+      <p>{{ item.description }}</p>
+    </a>
+  {% endfor %}
+</div>
+
+
+<script>
+  const typeSelect = document.getElementById('typeSelect');
+  const filters = document.querySelectorAll('.filter');
+  const cards = document.querySelectorAll('.card');
+  const typeButtons = document.querySelectorAll('.type-segment .segment-button');
+
+  const difficultyOptionsByType = {
+    machines: ["Easy", "Medium", "Hard", "Insane"],
+    challenges: ["Very Easy", "Easy", "Medium", "Hard", "Insane"],
+    prolabs: ["Beginner", "Intermediate", "Advanced", "Expert"]
+  };
+
+  const prolabsAliasMap = {
+    "Easy": "Beginner",
+    "Medium": "Intermediate",
+    "Hard": "Advanced",
+    "Insane": "Expert"
+  };
+
+  const categoryAliasMap = {
+    miscs: 'misc',
+    misc: 'misc',
+    'gamepwn': 'gamepwn',
+    'securecoding': 'securecoding',
+    'aiml': 'aiml'
+  };
+
+  function populateDifficultyOptions(type) {
+    const sel = document.getElementById('difficultyFilter');
+    const current = sel.value;
+    // clear all except first placeholder
+    while (sel.options.length > 1) sel.remove(1);
+    (difficultyOptionsByType[type] || []).forEach(v => {
+      const opt = document.createElement('option');
+      opt.value = v;
+      opt.textContent = v;
+      sel.appendChild(opt);
+    });
+    // reset selection if no longer valid
+    const stillValid = Array.from(sel.options).some(o => o.value === current);
+    if (!stillValid) sel.value = '';
+  }
+
+  function normalizeDifficulty(type, value) {
+    if (!value) return '';
+    const v = value.trim();
+    if (type === 'prolabs') {
+      return prolabsAliasMap[v] || v;
+    }
+    return v;
+  }
+
+  function updateFilters() {
+    const type = typeSelect.value;
+
+    // Affiche seulement les filtres pertinents
+    filters.forEach(f => {
+      const types = f.dataset.type.split(' ');
+      f.style.display = types.includes(type) ? 'inline-block' : 'none';
+    });
+
+    // Met à jour les options de difficulté selon le type
+    populateDifficultyOptions(type);
+
+    updateCards();
+  }
+
+  function updateCards() {
+    const type = typeSelect.value;
+    const os = document.getElementById('osFilter').value;
+    const difficulty = document.getElementById('difficultyFilter').value;
+    const category = document.getElementById('categoryFilter').value;
+
+    function normalizeCategory(value) {
+      if (!value) return '';
+      const collapsed = value.trim().toLowerCase().replace(/[^a-z0-9]/g, '');
+      return categoryAliasMap[collapsed] || collapsed;
+    }
+
+    cards.forEach(card => {
+      const matchType = card.dataset.type === type;
+      const matchOS = !os || card.dataset.os === os;
+      const cardDiff = normalizeDifficulty(type, card.dataset.difficulty || '');
+      const selectedDiff = normalizeDifficulty(type, difficulty || '');
+      const matchDiff = !selectedDiff || cardDiff === selectedDiff;
+      const selectedCat = normalizeCategory(category || '');
+      const cardCat = normalizeCategory(card.dataset.category || '');
+      const matchCat = !selectedCat || cardCat === selectedCat;
+
+      // Keep CSS display (grid). Only hide when not matching.
+      card.style.display = (matchType && matchOS && matchDiff && matchCat) ? '' : 'none';
+    });
+  }
+
+  function setActiveType(newType) {
+    typeSelect.value = newType;
+    typeButtons.forEach(btn => {
+      const active = btn.dataset.type === newType;
+      btn.classList.toggle('active', active);
+      btn.setAttribute('aria-selected', active ? 'true' : 'false');
+    });
+    updateFilters();
+  }
+
+  typeButtons.forEach(btn => btn.addEventListener('click', () => setActiveType(btn.dataset.type)));
+
+  typeSelect.addEventListener('change', updateFilters);
+  filters.forEach(f => f.addEventListener('change', updateCards));
+
+  // Initialisation: valeur par défaut
+  setActiveType(typeSelect.value || 'machines');
+</script>

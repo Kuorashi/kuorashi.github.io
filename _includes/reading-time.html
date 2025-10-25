@@ -1,0 +1,7 @@
+{% assign src = include.content | default: content | default: page.content | default: include.fallback %}
+{% assign wc = src | strip_html | number_of_words %}
+{% if wc and wc > 0 %}
+  {% assign minutes = wc | plus: 149 | divided_by: 150 %}
+  {% if minutes < 1 %}{% assign minutes = 1 %}{% endif %}
+  {{ minutes | append: ' min read' }}
+{% endif %}

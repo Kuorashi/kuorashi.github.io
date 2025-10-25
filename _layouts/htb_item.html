@@ -1,0 +1,29 @@
+---
+layout: page
+---
+
+<div class="back-button-container">
+  <a href="{{ '/htb/' | relative_url }}" class="htb-back-button">
+    ⬅ Retour à la page HTB
+  </a>
+</div>
+
+<article class="htb-item">
+  <header>
+    <img src="{{ page.image | relative_url }}" alt="{{ page.title }}">
+    <h1>{{ page.title }}</h1>
+    <p>
+      {% if page.type == "machines" %}
+        🖥️ {{ page.os }} | 🔥 {{ page.difficulty }}
+      {% elsif page.type == "challenges" %}
+        🧩 {{ page.category }} | 🔥 {{ page.difficulty }}
+      {% elsif page.type == "prolabs" %}
+        🧱 ProLab | 🔥 {{ page.difficulty }}
+      {% endif %}
+    </p>
+  </header>
+
+  <div class="content">
+    {{ content }}
+  </div>
+</article>

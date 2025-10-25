@@ -1,0 +1,62 @@
+---
+layout: default
+title: Certifications
+permalink: /certifications/
+---
+
+<div class="filters">
+  <select id="providerFilter" aria-label="Filtrer par fournisseur">
+    <option value="">Fournisseur (tous)</option>
+    <option value="HackTheBox">HackTheBox</option>
+    <option value="Altered Security">Altered Security</option>
+    <option value="Cisco">Cisco</option>
+    <option value="CyberPKI">CyberPKI</option>
+    <option value="Autre">Autre</option>
+  </select>
+
+  <select id="statusFilter" aria-label="Filtrer par statut">
+    <option value="">Statut (tous)</option>
+    <option value="Obtenue">Obtenue</option>
+    <option value="En cours">En cours</option>
+  </select>
+</div>
+
+<div class="cards" id="cardsContainer">
+  {% for cert in site.certifications %}
+    <a class="card"
+       href="{{ cert.url | relative_url }}"
+       data-provider="{{ cert.provider | default: '' }}"
+       data-status="{{ cert.status | default: '' }}">
+      <span class="reading-time-badge">{% include reading-time.html content=cert.content %}</span>
+      <img src="{{ cert.image | relative_url }}" alt="{{ cert.title }}">
+      <h3>{{ cert.title }}</h3>
+      <hr>
+      <p>{{ cert.description }}</p>
+    </a>
+  {% endfor %}
+</div>
+
+
+<script>
+  const providerFilter = document.getElementById('providerFilter');
+  const statusFilter = document.getElementById('statusFilter');
+  const cards = document.querySelectorAll('.card');
+
+  function updateCards() {
+    const provider = providerFilter.value;
+    const status = statusFilter.value;
+
+    cards.forEach(card => {
+      const matchProvider = !provider || card.dataset.provider === provider;
+      const matchStatus = !status || card.dataset.status === status;
+
+      // Keep CSS display (grid). Only hide when not matching.
+      card.style.display = (matchProvider && matchStatus) ? '' : 'none';
+    });
+  }
+
+  providerFilter.addEventListener('change', updateCards);
+  statusFilter.addEventListener('change', updateCards);
+
+  updateCards();
+</script>

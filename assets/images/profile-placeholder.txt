@@ -1,0 +1,10 @@
+Pour ajouter votre photo de profil :
+
+1. Placez votre photo dans ce dossier : /assets/images/
+2. Nommez-la "profile.jpg" (ou .png)
+3. Ou modifiez le chemin dans _config.yml :
+   author:
+     avatar: /assets/images/votre-photo.jpg
+
+Dimensions recommandées : 300x300px minimum
+Format : JPG, PNG, ou WEBP
