@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Sitemap: https://kuorashi.github.io/sitemap.xml
 
-KUORASHI{what_did_you_search_here_?}
+# KUORASHI{what_did_you_search_here_?}
